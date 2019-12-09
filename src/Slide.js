@@ -23,10 +23,10 @@ export function Slide({
       />
       <div className="absolute inset-y-0 right-0 h-screen w-4/12 bg-transparent flex flex-col z-50">
         <div
-          className="flex-1 relative"
+          className="flex-1 relative text-center items-center justify-center"
           style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}
         >
-          <div className="absolute inset-y-0 top-0 right-0 pr-6 mt-4">
+          <div className="mx-auto inline-flex justify-center pt-16">
             <svg
               className="h-20 w-20"
               xmlns="http://www.w3.org/2000/svg"
@@ -42,15 +42,15 @@ export function Slide({
               />
             </svg>
           </div>
-          <div className="w-full h-full px-6 py-16 lg:py-16 lg:px-12 relative flex flex-col justify-center">
-            <h1 className="text-left mb-16 text-3xl lg:text-5xl">{title}</h1>
+          <div className="w-full px-6 py-4 lg:px-12 relative flex flex-col justify-center">
+            <h1 className="text-c21-primary text-center font-medium mb-4 text-3xl lg:text-5xl">{title}</h1>
             <div className="mb-6 lg:mb-12">
               <p className="lg:text-xl">{description}</p>
             </div>
             <div className="flex flex-grow leading-loose tracking-wide flex-col">
-              <div className="inline-flex justify-between mb-8">
-                <div className="flex flex-col">
-                  <div className="inline-flex mb-2 font-bold items-center">
+              <div className="inline-flex justify-around mb-8">
+                <div className="flex flex-col w-1/2">
+                  <div className="inline-flex mb-2 font-bold justify-center items-center">
                     <span className="text-xl mr-5">{bedRoomCount}</span>
                     <svg
                       className="h-8 w-8 fill-current mr-3"
@@ -64,8 +64,8 @@ export function Slide({
                     <p className="mr-5">Bedrooms</p>
                   </div>
                 </div>
-                <div className="flex flex-col">
-                  <div className="inline-flex mb-2 font-bold items-center">
+                <div className="flex flex-col w-1/2">
+                  <div className="inline-flex mb-2 font-bold justify-center items-center">
                     <span className="text-xl mr-5">{bathRoomCount}</span>
                     <svg
                       className="h-8 w-8 fill-current mr-3"
@@ -83,9 +83,9 @@ export function Slide({
                   </div>
                 </div>
               </div>
-              <div className="inline-flex justify-between mb-8">
-                <div className="flex flex-col">
-                  <div className="inline-flex mb-2 font-bold items-center">
+              <div className="inline-flex justify-around mb-8">
+                <div className="flex flex-col w-1/2">
+                  <div className="inline-flex mb-2 font-bold justify-center items-center">
                     <span className="text-xl mr-5">{area}</span>
                     <svg
                       className="h-8 w-8 fill-current mr-3"
@@ -141,8 +141,8 @@ export function Slide({
                     <p className="mr-5">Area</p>
                   </div>
                 </div>
-                <div className="flex flex-col">
-                  <div className="inline-flex mb-2 font-bold items-center">
+                <div className="flex flex-col w-1/2">
+                  <div className="inline-flex mb-2 font-bold justify-center items-center">
                     <span className="text-xl mr-5">{garage}</span>
                     <svg
                       className="h-8 w-8 fill-current mr-3"
@@ -186,7 +186,7 @@ export function Slide({
                 </div>
               </div>
             </div>
-            <div className="inline-flex items-center">
+            <div className="inline-flex items-center justify-center mt-16">
               <svg
                 className="h-6 w-6 fill-current mr-3"
                 xmlns="http://www.w3.org/2000/svg"
@@ -205,12 +205,12 @@ export function Slide({
         </div>
         <div
           className="h-auto px-6 lg:px-12 py-6 inline-flex justify-between text-white"
-          style={{ backgroundColor: "rgba(59, 66, 68, 0.8)" }}
+          style={{ backgroundColor: "rgba(64, 64, 65, 1)" }}
         >
-          <div className="text-red-500 font-semibold text-lg lg:text-2xl uppercase text-brand-red-400">
+          <div className="text-lg lg:text-2xl uppercase text-c21-bg">
             <span>{transactionType}</span>
           </div>
-          <div className="text-right text-white font-bold text-lg lg:text-2xl font-bold pl-3 leading-none flex items-center">
+          <div className="text-right text-c21-bg font-bold text-lg lg:text-2xl font-bold pl-3 flex items-center">
             <span>{price}</span>
           </div>
         </div>

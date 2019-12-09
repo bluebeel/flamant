@@ -53,7 +53,9 @@ function App() {
   const settings = {
     dots: false,
     infinite: true,
-    speed: window.SPEED_IN_SECONDS || 30,
+    fade: true,
+    autoplaySpeed: 25000,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,

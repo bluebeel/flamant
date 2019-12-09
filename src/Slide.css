@@ -10,11 +10,11 @@
 /* Zoom in Keyframes */
 @-webkit-keyframes zoomin {
   0% {transform: scale(1);}
-  50% {transform: scale(1.05);}
+  50% {transform: scale(1.02);}
   100% {transform: scale(1);}
 }
 @keyframes zoomin {
   0% {transform: scale(1);}
-  50% {transform: scale(1.05);}
+  50% {transform: scale(1.02);}
   100% {transform: scale(1);}
 } /*End of Zoom in Keyframes */

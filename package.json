@@ -11,7 +11,8 @@
     "react-scripts": "3.3.0",
     "react-slick": "^0.25.2",
     "react-spinkit": "^3.0.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "webfontloader": "^1.6.28"
   },
   "scripts": {
     "prestart": "tailwind build ./src/index.tailwind.css -c ./tailwind.config.js -o ./src/index.css",
