@@ -59,7 +59,7 @@ function App() {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: true,
+    autoplay: false,
     draggable: false,
     swipe: false,
     touchMove: false

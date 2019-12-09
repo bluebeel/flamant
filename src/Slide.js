@@ -21,9 +21,9 @@ export function Slide({
           backgroundImage: `url('${imageUrl}')`
         }}
       />
-      <div className="absolute inset-y-0 right-0 h-screen w-4/12 bg-transparent flex flex-col z-50">
+      <div className="absolute inset-y-0 right-0 h-screen w-4/12 bg-transparent flex flex-grow flex-col z-50">
         <div
-          className="flex-1 relative text-center items-center justify-center"
+          className="flex-1 text-center items-center justify-center"
           style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}
         >
           <div className="mx-auto inline-flex justify-center pt-16">
