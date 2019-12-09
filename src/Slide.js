@@ -42,7 +42,7 @@ export function Slide({
               />
             </svg>
           </div>
-          <div className="w-full px-6 py-4 lg:px-12 relative flex flex-col justify-center">
+          <div className="w-full px-6 py-4 lg:px-12 relative flex-col justify-center">
             <h1 className="text-c21-primary text-center font-medium mb-4 text-3xl lg:text-5xl">{title}</h1>
             <div className="mb-6 lg:mb-12">
               <p className="lg:text-xl">{description}</p>
@@ -51,9 +51,8 @@ export function Slide({
               <div className="inline-flex justify-around mb-8">
                 <div className="flex flex-col w-1/2">
                   <div className="inline-flex mb-2 font-bold justify-center items-center">
-                    <span className="text-xl mr-5">{bedRoomCount}</span>
                     <svg
-                      className="h-8 w-8 fill-current mr-3"
+                      className="h-8 w-8 fill-current"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                     >
@@ -61,14 +60,13 @@ export function Slide({
                     </svg>
                   </div>
                   <div>
-                    <p className="mr-5">Bedrooms</p>
+                    <p className="text-xl">{bedRoomCount}</p>
                   </div>
                 </div>
                 <div className="flex flex-col w-1/2">
                   <div className="inline-flex mb-2 font-bold justify-center items-center">
-                    <span className="text-xl mr-5">{bathRoomCount}</span>
                     <svg
-                      className="h-8 w-8 fill-current mr-3"
+                      className="h-8 w-8 fill-current"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                     >
@@ -79,16 +77,15 @@ export function Slide({
                     </svg>
                   </div>
                   <div>
-                    <p className="mr-5">Bathrooms</p>
+                    <p className="text-xl">{bathRoomCount}</p>
                   </div>
                 </div>
               </div>
               <div className="inline-flex justify-around mb-8">
                 <div className="flex flex-col w-1/2">
                   <div className="inline-flex mb-2 font-bold justify-center items-center">
-                    <span className="text-xl mr-5">{area}</span>
                     <svg
-                      className="h-8 w-8 fill-current mr-3"
+                      className="h-8 w-8 fill-current"
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"
                       x="0px"
@@ -138,14 +135,13 @@ export function Slide({
                     </svg>
                   </div>
                   <div>
-                    <p className="mr-5">Area</p>
+                    <p className="text-xl">{area}</p>
                   </div>
                 </div>
                 <div className="flex flex-col w-1/2">
                   <div className="inline-flex mb-2 font-bold justify-center items-center">
-                    <span className="text-xl mr-5">{garage}</span>
                     <svg
-                      className="h-8 w-8 fill-current mr-3"
+                      className="h-8 w-8 fill-current"
                       xmlns="http://www.w3.org/2000/svg"
                       x="0px"
                       y="0px"
@@ -181,7 +177,7 @@ export function Slide({
                     </svg>
                   </div>
                   <div>
-                    <p className="mr-5">Garage</p>
+                    <p className="text-xl">{garage}</p>
                   </div>
                 </div>
               </div>
