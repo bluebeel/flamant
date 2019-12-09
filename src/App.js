@@ -54,7 +54,7 @@ function App() {
     dots: false,
     infinite: true,
     fade: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 25000,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
