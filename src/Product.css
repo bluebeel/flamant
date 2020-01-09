@@ -1,0 +1,11 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+.table:after {
+    display: block;
+    height: 20px;
+    content: "";
+}
+
+.table tr td:first-child {
+    width: 150px;
+}

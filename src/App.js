@@ -1,140 +1,96 @@
 import React from "react";
-import { Slide } from "./Slide";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-import Spinner from "react-spinkit";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Home from "./Home";
+import Product from "./Product";
+
+const Logo = () => (
+  <svg viewBox="0 0 203.66 50.72" id="icon-logo">
+    <title>flamant</title>
+    <g>
+      <path
+        d="M0,27.24c3.46,0,4-1,4-4.16V4.64C4,1.5,3.46.49,0,.49V.18H23.22L23.8,9l-.22.05C22.42,3.94,19.76.53,12.63.53H9.53V14.06h.93c5.45,0,7.58-2.21,8.33-6.32H19v13h-.22c-.75-4.07-2.88-6.28-8.33-6.28H9.53v8.44c0,3.41,1,4.38,4.43,4.38v.27H0Z"
+        transform="translate(0 0)"
+      ></path>
+    </g>
+    <path
+      d="M26.28,27.24c3.45,0,4-1,4-4.16V4.64c0-3.14-.54-4.15-4-4.15V.18h14V.49c-3.46,0-4.44.93-4.44,4.37V27.2h2.84c7.27,0,10-4,11.12-9.11l.23,0-.62,9.38H26.28Z"
+      transform="translate(0 0)"
+    ></path>
+    <path
+      d="M68.06,17.87,63.19,6.81,58.54,17.87ZM49.63,27.24c4.87,0,6.43-4.91,8.2-9L65.67,0h.27l9.75,21.36c1.33,2.92,3,5.88,6,5.88v.27H67.09v-.27c3.15,0,4.17-2.12,2.66-5.57l-1.51-3.36H58.32l-.36.93c-1.51,3.93-2,8,3.28,8v.27H49.63Z"
+      transform="translate(0 0)"
+    ></path>
+    <path
+      d="M80.91,12.78l.35-5.17c.31-4.78-.8-7.12-5.32-7.12V.18h10.2l9.44,19.63L103.73.18h8.78V.49c-3.64,0-4.13,2-4,5.08l.8,16.67c.18,3.5.93,5,4.3,5v.27H100v-.27c3.37,0,4-1.72,3.86-4.78l-1-19L93.09,26.71h-.26l-11-22.24-.57,8.31"
+      transform="translate(0 0)"
+    ></path>
+    <path
+      d="M131.29,17.87,126.42,6.81l-4.66,11.06Zm-18.43,9.37c4.87,0,6.42-4.91,8.2-9L128.9,0h.27l9.74,21.36c1.33,2.92,3,5.88,6,5.88v.27H130.32v-.27c3.14,0,4.16-2.12,2.66-5.57l-1.51-3.36h-9.93l-.35.93c-1.51,3.93-2,8,3.28,8v.27H112.86Z"
+      transform="translate(0 0)"
+    ></path>
+    <path
+      d="M144.63,27.24c5.23,0,5.54-2.56,5.54-14.11v-6c0-4.46-1-6.67-5.32-6.67V.18h9L169.93,19V14.59c0-11.54-.31-14.1-5.54-14.1V.18h11.53V.49c-5.23,0-5.54,2.56-5.54,14.1V27.73l-.22.09L150.61,5.17v8c0,11.55.31,14.11,5.54,14.11v.27H144.63Z"
+      transform="translate(0 0)"
+    ></path>
+    <path
+      d="M183.31,27.24c3.46,0,4.44-1,4.44-4.38V.53h-.36c-6.78,0-8.42,4.38-9.79,9.29l-.27-.05.8-9.59h24.73l.8,9.59-.27.05C202,4.91,200.38.53,193.6.53h-.36V22.86c0,3.41,1,4.38,4.43,4.38v.27H183.31Z"
+      transform="translate(0 0)"
+    ></path>
+    <polygon points="50.91 41.82 53.11 46.17 55.33 41.82 56.3 41.82 53.51 47.06 53.51 50.55 52.65 50.55 52.65 47.06 49.93 41.82 50.91 41.82"></polygon>
+    <path
+      d="M65.31,43a2.91,2.91,0,0,0-3.7,0c-.53.57-.76,1.5-.76,3.2,0,1.51.17,2.52.69,3.07a2.94,2.94,0,0,0,3.7,0c.54-.58.78-1.5.78-3.21,0-1.52-.19-2.5-.71-3.06m.61,6.72a3.34,3.34,0,0,1-2.58,1,3.21,3.21,0,0,1-2.51-.93,5.06,5.06,0,0,1-.91-3.47,5.32,5.32,0,0,1,1-3.71,3.86,3.86,0,0,1,5.08,0,5.15,5.15,0,0,1,.91,3.5,5.24,5.24,0,0,1-1,3.68"
+      transform="translate(0 0)"
+    ></path>
+    <path
+      d="M72.77,41.82v5.7C72.77,49,73,50,75,50S77.3,49,77.3,47.47V41.82h.85v5.63a3.36,3.36,0,0,1-.63,2.32,3.16,3.16,0,0,1-2.52.91,3.13,3.13,0,0,1-2.43-.83,3.33,3.33,0,0,1-.65-2.35V41.82Z"
+      transform="translate(0 0)"
+    ></path>
+    <path
+      d="M81.69,41.08a.56.56,0,0,1,.58.59,4.78,4.78,0,0,1-.91,2.21l-.56-.3a7.06,7.06,0,0,0,.61-1.4.59.59,0,0,1-.31-.52.56.56,0,0,1,.59-.58"
+      transform="translate(0 0)"
+    ></path>
+    <path
+      d="M88.08,46h1.17c1.47,0,2.42-.41,2.42-1.87a1.62,1.62,0,0,0-.41-1.24A1.9,1.9,0,0,0,90,42.57H88.08ZM90,41.82a3.11,3.11,0,0,1,1.81.44A1.94,1.94,0,0,1,92.57,44a2.22,2.22,0,0,1-1.89,2.4c1.15.29,1.51,1.71,2,4.14h-.92c-.66-2.79-1-3.78-2.27-3.78H88.08v3.78h-.85V41.82Z"
+      transform="translate(0 0)"
+    ></path>
+    <polygon points="102.07 41.82 102.07 42.58 98.41 42.58 98.41 45.7 101.78 45.7 101.78 46.46 98.41 46.46 98.41 49.79 102.12 49.79 102.12 50.55 97.55 50.55 97.55 41.82 102.07 41.82"></polygon>
+    <polygon points="113.75 41.82 113.75 45.7 118.13 45.7 118.13 41.82 118.98 41.82 118.98 50.55 118.13 50.55 118.13 46.46 113.75 46.46 113.75 50.55 112.9 50.55 112.9 41.82 113.75 41.82"></polygon>
+    <path
+      d="M129.36,43a2.91,2.91,0,0,0-3.7,0c-.53.57-.76,1.5-.76,3.2,0,1.51.17,2.52.69,3.07a2.94,2.94,0,0,0,3.7,0c.54-.58.78-1.5.78-3.21,0-1.52-.19-2.5-.71-3.06m.61,6.72a3.34,3.34,0,0,1-2.58,1,3.2,3.2,0,0,1-2.51-.93,5.06,5.06,0,0,1-.91-3.47,5.32,5.32,0,0,1,1-3.71,3.86,3.86,0,0,1,5.08,0,5.15,5.15,0,0,1,.91,3.5,5.24,5.24,0,0,1-1,3.68"
+      transform="translate(0 0)"
+    ></path>
+    <polygon points="137.31 41.82 140.05 48.9 142.81 41.82 144 41.82 144.48 50.55 143.61 50.55 143.25 42.81 140.45 50.04 139.62 50.04 136.84 42.81 136.45 50.55 135.6 50.55 136.1 41.82 137.31 41.82"></polygon>
+    <polygon points="154.1 41.82 154.1 42.58 150.44 42.58 150.44 45.7 153.81 45.7 153.81 46.46 150.44 46.46 150.44 49.79 154.15 49.79 154.15 50.55 149.57 50.55 149.57 41.82 154.1 41.82"></polygon>
+  </svg>
+);
 
 function App() {
-  const url = window.LIVE_FEED_URL;
-
-  const [data, setData] = React.useState(null);
-  const [fetchState, setFetchState] = React.useState({
-    loading: false,
-    loaded: false,
-    error: null
-  });
-
-  React.useEffect(() => {
-    setFetchState(state => ({ ...state, loading: true }));
-    fetch(url)
-      .then(response => response.text())
-      .then(parseXmlToDom)
-      .then(xml2json)
-      .then(v => {
-        setFetchState(state => ({ ...state, loading: false, loaded: true }));
-
-        setData(v.rss.channel);
-        console.log("JSON.v", v);
-      })
-      .catch(err => {
-        console.log("Error", err);
-        setFetchState(state => ({
-          ...state,
-          loading: false,
-          error: err,
-          loaded: false
-        }));
-      });
-  }, [url, setFetchState]);
-
-  if (fetchState.loading) {
-    return (
-      <div className="flex">
-        <Spinner name="line-scale-pulse-out" />
-      </div>
-    );
-  }
-
-  if (!data) {
-    return <h1>No data fetched</h1>;
-  }
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    fade: true,
-    autoplaySpeed: 6000,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    autoplay: true,
-    draggable: false,
-    swipe: false,
-    touchMove: false
-  };
-
   return (
-    <Slider {...settings}>
-      {data.item.map(slide => {
-        return (
-          <Slide
-            key={slide.guid.value}
-            title={slide.title}
-            description={slide.description}
-            imageUrl={slide["media:content"].url}
-            location={slide.Adresse}
-            bedRoomCount={slide.QuantiteChambre}
-            garage={slide.QuantiteGarage}
-            bathRoomCount={slide.QuantiteSDB}
-            area={slide.Surface}
-            transactionType={slide.TransactionType}
-            price={slide.Prix}
-          />
-        );
-      })}
-    </Slider>
+    <Router>
+      <div className="pt-8 pb-2">
+        <div className="pt-3 flex px-10 my-0 mx-auto pb-0 w-full items-center justify-center">
+          <Link className="no-underline opacity-100" to="/">
+              <svg
+                className="overflow-hidden inline-block align-middle"
+                dangerouslySetInnerHTML={{
+                  __html: '<use xlink:href="#icon-logo"></use>'
+                }}
+              ></svg>
+          </Link>
+          <Logo />
+        </div>
+      </div>
+
+      <Switch>
+        <Route path="/product">
+          <Product />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
 export default App;
-
-function parseXmlToDom(input) {
-  console.log("parseXmlToDom::input", input);
-  const parser = new DOMParser(); // initialize dom parser
-  return parser.parseFromString(input, "application/xml"); // convert dom string to dom tree.
-}
-
-function xml2json(srcDOM) {
-  let children = [...srcDOM.children];
-
-  // base case for recursion.
-  if (!children.length) {
-    if (srcDOM.hasAttributes()) {
-      var attrs = srcDOM.attributes;
-      var output = {};
-      for (var i = attrs.length - 1; i >= 0; i--) {
-        output[attrs[i].name] = attrs[i].value;
-      }
-
-      output.value = srcDOM.innerHTML;
-      return output;
-    } else {
-      return srcDOM.innerHTML;
-    }
-  }
-
-  // initializing object to be returned.
-  let jsonResult = {};
-
-  for (let child of children) {
-    // checking is child has siblings of same name.
-    let childIsArray =
-      children.filter(eachChild => eachChild.nodeName === child.nodeName)
-        .length > 1;
-
-    // if child is array, save the values as array, else as strings.
-    if (childIsArray) {
-      if (jsonResult[child.nodeName] === undefined) {
-        jsonResult[child.nodeName] = [xml2json(child)];
-      } else {
-        jsonResult[child.nodeName].push(xml2json(child));
-      }
-    } else {
-      jsonResult[child.nodeName] = xml2json(child);
-    }
-  }
-
-  return jsonResult;
-}
