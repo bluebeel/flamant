@@ -1,11 +1,10 @@
-import Head from "next/head";
-import { GetServerSideProps } from "next";
+import {GetServerSideProps} from "next";
 import groupBy from "lodash.groupby";
-import { CategoryCardList } from "../../components/category-card-list";
-import { getCategoriesAndCategoryStructure } from "../../api";
-import { toLanguageDescriptionMap, uniq } from "../../utils";
-import { useLanguageState } from "../../use-language";
-import { Layout } from "../../components/layout";
+import {CategoryCardList} from "../../components/category-card-list";
+import {getCategoriesAndCategoryStructure} from "../../api";
+import {toLanguageDescriptionMap, uniq} from "../../utils";
+import {Layout} from "../../components/layout";
+import {useTranslation} from "react-i18next";
 
 export const getServerSideProps: GetServerSideProps = async ({
   params: { category: categoryId }
@@ -84,10 +83,10 @@ export const getServerSideProps: GetServerSideProps = async ({
 };
 
 const CategoryDetails = ({ categories }) => {
-  const { language } = useLanguageState();
+    const { i18n } = useTranslation();
   return (
     <Layout>
-      <CategoryCardList categories={categories} language={language} />
+      <CategoryCardList categories={categories} language={i18n.language} />
     </Layout>
   );
 };

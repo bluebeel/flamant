@@ -1,14 +1,10 @@
 import Head from "next/head";
 import React from "react";
-import {
-  LanguageSupported,
-  useLanguageState,
-  useSetLanguage
-} from "../use-language";
+import {useTranslation} from "react-i18next";
+import {LanguageSupported} from "../i18n";
 
 export const Layout = ({ children }) => {
-  const { language } = useLanguageState();
-  const setLanguage = useSetLanguage();
+  const { i18n } = useTranslation();
 
   return (
     <>
@@ -32,17 +28,17 @@ export const Layout = ({ children }) => {
         </div>
         <div>
           <div>
-            <button onClick={() => setLanguage(LanguageSupported.NL)}>
+            <button onClick={() => i18n.changeLanguage(LanguageSupported.NL)}>
               {LanguageSupported.NL}
             </button>
           </div>
           <div>
-            <button onClick={() => setLanguage(LanguageSupported.EN)}>
+            <button onClick={() => i18n.changeLanguage(LanguageSupported.EN)}>
               {LanguageSupported.EN}
             </button>
           </div>
           <div>
-            <button onClick={() => setLanguage(LanguageSupported.FR)}>
+            <button onClick={() => i18n.changeLanguage(LanguageSupported.FR)}>
               {LanguageSupported.FR}
             </button>
           </div>

@@ -1,12 +1,10 @@
-import Head from "next/head";
 import axios from "axios";
 import {GetServerSideProps} from "next";
 import ImageGallery from "react-image-gallery";
 import {useState} from "react";
-import "..";
 import {toLanguageDescriptionMap} from "../../utils";
-import {useLanguageState} from "../../use-language";
 import {Layout} from "../../components/layout";
+import {useTranslation} from "react-i18next";
 
 const credentials = {
   username: "EyeCatcher",
@@ -51,7 +49,9 @@ const Products = ({ products }) => {
     id: products[0].ItemId
   });
 
-  const { language } = useLanguageState();
+  const {
+    i18n: { language }
+  } = useTranslation();
 
   return (
     <Layout>
@@ -99,40 +99,6 @@ const Products = ({ products }) => {
               disableArrowKeys={true}
               additionalClass="w-full mb-8"
             />
-            {/*TODO @saikou, style the previous and next button to show on each side, I create a fake slider*/}
-            {/*by hidding the other*/}
-            <div>
-              <div>
-                {productDisplayed.index !== 0 && (
-                  <button
-                    onClick={() => {
-                      const index =
-                        (productDisplayed.index - 1) % products.length;
-                      setProductDisplayed({
-                        index,
-                        id: products[index].ItemId
-                      });
-                    }}
-                  >
-                    Previous
-                  </button>
-                )}
-              </div>
-              <div>
-                <button
-                  onClick={() => {
-                    const index =
-                      (productDisplayed.index + 1) % products.length;
-                    setProductDisplayed({
-                      index,
-                      id: products[index].ItemId
-                    });
-                  }}
-                >
-                  Next
-                </button>
-              </div>
-            </div>
             <div className="mx-auto">
               <h1
                 className="text-xl lg:text-4xl font-hairline tracking-widest mb-3"
