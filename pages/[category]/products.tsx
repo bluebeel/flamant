@@ -1,33 +1,16 @@
 import axios from "axios";
-import {GetServerSideProps} from "next";
+import { GetServerSideProps } from "next";
 import ImageGallery from "react-image-gallery";
-import {useState} from "react";
-import {toLanguageDescriptionMap} from "../../utils";
-import {Layout} from "../../components/layout";
-import {useTranslation} from "react-i18next";
-
-const credentials = {
-  username: "EyeCatcher",
-  password: "7kv4y77a2g"
-};
-const Http = axios.create({
-  baseURL: "https://app.flamant.com:8004/PIM/Ecommerce",
-  headers: {
-    "Content-Type": "application/json; charset=utf-8",
-    Authorization:
-      "Basic " +
-      Buffer.from(credentials.username + ":" + credentials.password).toString(
-        "base64"
-      )
-  }
-});
+import { useState } from "react";
+import { toLanguageDescriptionMap } from "../../utils";
+import { Layout } from "../../components/layout";
+import { useTranslation } from "react-i18next";
+import { getProducts } from "../../api";
 
 export const getServerSideProps: GetServerSideProps = async ({
   params: { category: categoryId }
 }) => {
-  const products = await Http.get("/Products").then(productsResponse => {
-    return productsResponse.data;
-  });
+  const products = await getProducts();
   const filteredProducts = products.filter(product => {
     return (
       product?.Main?.Id === categoryId ||

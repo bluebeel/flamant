@@ -1,4 +1,11 @@
 import axios from "axios";
+import { setupCache } from "axios-cache-adapter";
+
+// Create `axios-cache-adapter` instance
+const cache = setupCache({
+  maxAge: 15 * 60000 * 1000,
+  debug: false
+});
 
 const credentials = {
   username: "EyeCatcher",
@@ -14,7 +21,8 @@ const Http = axios.create({
       Buffer.from(credentials.username + ":" + credentials.password).toString(
         "base64"
       )
-  }
+  },
+  adapter: cache.adapter
 });
 
 export const getCategoriesAndCategoryStructure = () =>
@@ -24,3 +32,8 @@ export const getCategoriesAndCategoryStructure = () =>
   ]).then(([categoryStructureResponse, categoriesResponse]) => {
     return [categoryStructureResponse.data, categoriesResponse.data];
   });
+
+export const getProducts = () =>
+    Http.get("/Products").then((productsResponse) => {
+      return productsResponse.data;
+    });
