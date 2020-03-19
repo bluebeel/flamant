@@ -82,6 +82,38 @@ const Products = ({ products }) => {
               disableArrowKeys={true}
               additionalClass="w-full mb-8"
             />
+            <div>
+              <div>
+                {productDisplayed.index !== 0 && (
+                    <button
+                        onClick={() => {
+                          const index =
+                              (productDisplayed.index - 1) % products.length;
+                          setProductDisplayed({
+                            index,
+                            id: products[index].ItemId
+                          });
+                        }}
+                    >
+                      Previous
+                    </button>
+                )}
+              </div>
+              <div>
+                <button
+                    onClick={() => {
+                      const index =
+                          (productDisplayed.index + 1) % products.length;
+                      setProductDisplayed({
+                        index,
+                        id: products[index].ItemId
+                      });
+                    }}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
             <div className="mx-auto">
               <h1
                 className="text-xl lg:text-4xl font-hairline tracking-widest mb-3"

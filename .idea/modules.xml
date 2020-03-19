@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/loverius.iml" filepath="$PROJECT_DIR$/.idea/loverius.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../flamant/.idea/flamant-next.iml" filepath="$PROJECT_DIR$/../flamant/.idea/flamant-next.iml" />
     </modules>
   </component>
 </project>
