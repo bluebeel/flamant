@@ -8,8 +8,8 @@ export enum LanguageSupported {
 
 // If you change the config here, please change server.js file also
 const NextI18NextInstance = new NextI18Next({
-  defaultLanguage: "NL",
-  otherLanguages: ["EN", "FR"],
+  defaultLanguage: "EN",
+  otherLanguages: ["EN", "FR","NL"],
   shallowRender: true
 });
 

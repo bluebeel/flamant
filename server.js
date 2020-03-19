@@ -5,8 +5,8 @@ const NextI18Next = require("next-i18next").default;
 
 // If you change the config here, please change i18n.ts file also
 const nextI18nextInstance =  new NextI18Next({
-  defaultLanguage: "NL",
-  otherLanguages: ["EN", "FR"],
+  defaultLanguage: "EN",
+  otherLanguages: ["EN", "FR","NL"],
   shallowRender: true
 });
 
