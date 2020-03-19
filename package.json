@@ -5,6 +5,7 @@
   "scripts": {
     "predev": "tailwind build ./index.tailwind.css -c ./tailwind.config.js -o ./index.css",
     "prebuild": "tailwind build ./index.tailwind.css -c ./tailwind.config.js -o ./index.css",
+    "install": "npm run build",
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js"
