@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d6be3041-80aa-4182-a626-efd80635c85a" name="Default Changelist" comment="" />
+    <list default="true" id="d6be3041-80aa-4182-a626-efd80635c85a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[category]/products.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/[category]/products.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/locales/EN/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/locales/EN/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/locales/FR/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/locales/FR/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/locales/NL/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/locales/NL/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serviceWorker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,16 +39,21 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="prettierjs.PrettierConfiguration.Package" value="$USER_HOME$/.nvm/versions/node/v10.13.0/lib/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/../flamant/node_modules/typescript/lib" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$USER_HOME$/.nvm/versions/node/v12.10.0/lib/node_modules/prettier" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -44,6 +61,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -56,51 +74,34 @@
       <updated>1575748461126</updated>
       <workItem from="1575748462793" duration="7013000" />
       <workItem from="1584553466116" duration="4242000" />
+      <workItem from="1584694822410" duration="5000" />
+      <workItem from="1584694892350" duration="1232000" />
+      <workItem from="1584710454930" duration="598000" />
+      <workItem from="1584733229060" duration="2448000" />
+      <workItem from="1589449493973" duration="561000" />
+      <workItem from="1589452695304" duration="484000" />
+      <workItem from="1589970998796" duration="24000" />
+      <workItem from="1603573849563" duration="2852000" />
+      <workItem from="1603729477880" duration="3277000" />
+      <workItem from="1603993311743" duration="7363000" />
+      <workItem from="1604171616220" duration="6000" />
+      <workItem from="1604232451278" duration="300000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-    <option name="exactExcludedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/node_modules/wait-for-expect/lib/index.d.js" />
-        <option value="$PROJECT_DIR$/node_modules/wait-for-expect/lib/toBeInRangeMatcher.d.js" />
-        <option value="$PROJECT_DIR$/node_modules/wait-for-expect/lib/waitForExpect.spec.d.js" />
-      </list>
-    </option>
+    <option name="version" value="3" />
   </component>
-  <component name="WindowStateProjectService">
-    <state width="1771" height="330" key="GridCell.Tab.0.bottom" timestamp="1584607896026">
-      <screen x="0" y="23" width="1792" height="1097" />
-    </state>
-    <state width="1771" height="330" key="GridCell.Tab.0.bottom/0.23.1792.1097@0.23.1792.1097" timestamp="1584607896026" />
-    <state width="1771" height="330" key="GridCell.Tab.0.center" timestamp="1584607896025">
-      <screen x="0" y="23" width="1792" height="1097" />
-    </state>
-    <state width="1771" height="330" key="GridCell.Tab.0.center/0.23.1792.1097@0.23.1792.1097" timestamp="1584607896025" />
-    <state width="1771" height="330" key="GridCell.Tab.0.left" timestamp="1584607896025">
-      <screen x="0" y="23" width="1792" height="1097" />
-    </state>
-    <state width="1771" height="330" key="GridCell.Tab.0.left/0.23.1792.1097@0.23.1792.1097" timestamp="1584607896025" />
-    <state width="1771" height="330" key="GridCell.Tab.0.right" timestamp="1584607896025">
-      <screen x="0" y="23" width="1792" height="1097" />
-    </state>
-    <state width="1771" height="330" key="GridCell.Tab.0.right/0.23.1792.1097@0.23.1792.1097" timestamp="1584607896025" />
-    <state x="268" y="91" key="MergeDialog" timestamp="1584553601157">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="268" y="91" key="MergeDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1584553601157" />
-    <state x="664" y="247" width="760" height="588" key="MultipleFileMergeDialog" timestamp="1584553607638">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="664" y="247" width="760" height="588" key="MultipleFileMergeDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1584553607638" />
-    <state x="461" y="182" key="SettingsEditor" timestamp="1584556627782">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="461" y="182" key="SettingsEditor/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1584556627782" />
-    <state x="100" y="123" width="1592" height="897" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1584606254007">
-      <screen x="0" y="23" width="1792" height="1097" />
-    </state>
-    <state x="100" y="123" width="1592" height="897" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1584606254007" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

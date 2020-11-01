@@ -1,0 +1,23 @@
+{
+  "h1": "A simple example",
+  "change-locale": "Change locale",
+  "to-second-page": "To second page",
+  "error-with-status": "A {{statusCode}} error occurred on server",
+  "error-without-status": "An error occurred on the server",
+  "price": "Prijs",
+  "specifications": "Specificaties",
+  "length": "Lengte",
+  "width": "Breedte",
+  "height": "Hoogte",
+  "weight": "Gewicht",
+  "seatWidth": "Zitbreedte",
+  "seatHeight": "Zithoogte",
+  "seatDepth": "Zitdiepte",
+  "armrestHeight": "Hoogte van de armleuning",
+  "materials": "Materialen",
+  "finish": "Afwerking",
+  "color": "Kleur",
+  "extra": "Extra",
+  "previous": "Vorige",
+  "next": "Volgende"
+}

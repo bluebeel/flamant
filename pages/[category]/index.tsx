@@ -1,17 +1,43 @@
-import {GetServerSideProps} from "next";
+import { GetServerSideProps } from "next";
 import groupBy from "lodash.groupby";
-import {CategoryCardList} from "../../components/category-card-list";
-import {getCategoriesAndCategoryStructure} from "../../api";
-import {toLanguageDescriptionMap, uniq} from "../../utils";
-import {Layout} from "../../components/layout";
-import {useTranslation} from "react-i18next";
+import { CategoryCardList } from "../../components/category-card-list";
+import { getCategoriesAndCategoryStructure } from "../../api";
+import {
+  getFirstLevelCategory,
+  toLanguageDescriptionMap,
+  uniq,
+} from "../../utils";
+import { Layout } from "../../components/layout";
+import { useRouter } from "next/router";
 
-export const getServerSideProps: GetServerSideProps = async ({
-  params: { category: categoryId }
+export async function getStaticPaths() {
+  const [
+    categoryStructure,
+    categories,
+  ] = await getCategoriesAndCategoryStructure();
+  console.log(
+    "getStaticPaths::category",
+    getFirstLevelCategory(categoryStructure, categories)
+  );
+
+  return {
+    paths: getFirstLevelCategory(categoryStructure, categories).categories.map(
+      (category) => {
+        return {
+          params: { category: category.id },
+        };
+      }
+    ),
+    fallback: true,
+  };
+}
+
+export const getStaticProps: GetServerSideProps = async ({
+  params: { category: categoryId },
 }) => {
   const [
     categoryStructure,
-    categories
+    categories,
   ] = await getCategoriesAndCategoryStructure();
   const categoriesMap = groupBy(categories, "Id");
 
@@ -28,21 +54,21 @@ export const getServerSideProps: GetServerSideProps = async ({
       groupBy(categoryStructure, "Cat1")
     ).filter(([id]) => {
       return id === categoryId;
-    })[0][1];
+    })?.[0]?.[1];
   }
 
   return {
     props: {
       categories: uniq(
-        (categoriesToRender as any).map(category => {
+        ((categoriesToRender as any) || [])?.map((category) => {
           // display the second level because the param is a root level
           if (category.Main === categoryId) {
             return category.Cat1;
           }
           return category.Cat2;
-        })
+        }) || []
       )
-        .map(key => {
+        .map((key) => {
           const category = categoriesMap[key][0];
 
           if (!category) {
@@ -58,14 +84,14 @@ export const getServerSideProps: GetServerSideProps = async ({
             children: [
               ...new Set(
                 categoryStructure
-                  .filter(category => {
+                  .filter((category) => {
                     // display the second level because the param is a root level
                     if (category.Main === categoryId) {
                       return category.Cat1 === key;
                     }
                     return category.Cat2 === key;
                   })
-                  .map(category => {
+                  .map((category) => {
                     // display the second level because the param is a root level
                     if (category.Main === categoryId) {
                       return category.Cat2;
@@ -73,20 +99,24 @@ export const getServerSideProps: GetServerSideProps = async ({
                     return null;
                   })
                   .filter(Boolean)
-              )
-            ]
+              ),
+            ],
           };
         })
-        .filter(Boolean)
-    }
+        .filter(Boolean),
+    },
+    revalidate: 120,
   };
 };
 
 const CategoryDetails = ({ categories }) => {
-    const { i18n } = useTranslation();
+  const { locale: language } = useRouter();
   return (
     <Layout>
-      <CategoryCardList categories={categories} language={i18n.language} />
+      <CategoryCardList
+        categories={categories || []}
+        language={language.toUpperCase()}
+      />
     </Layout>
   );
 };

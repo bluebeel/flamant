@@ -1,0 +1,23 @@
+{
+  "h1": "A simple example",
+  "change-locale": "Change locale",
+  "to-second-page": "To second page",
+  "error-with-status": "A {{statusCode}} error occurred on server",
+  "error-without-status": "An error occurred on the server",
+  "price": "Prix",
+  "specifications": "Specifications",
+  "length": "Longueur",
+  "width": "Largeur",
+  "height": "Hauteur",
+  "weight": "Poids",
+  "seatWidth": "Largeur du siège",
+  "seatHeight": "Hauteur du siège",
+  "seatDepth": "Profondeur du siège",
+  "armrestHeight": "Hauteur de l'accoudoir",
+  "materials": "Matériels",
+  "finish": "Finition",
+  "color": "Couleur",
+  "extra": "Extra",
+  "previous": "Précédent",
+  "next": "Suivant"
+}

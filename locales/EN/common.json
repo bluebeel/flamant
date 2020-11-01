@@ -1,0 +1,23 @@
+{
+  "h1": "A simple example",
+  "change-locale": "Change locale",
+  "to-second-page": "To second page",
+  "error-with-status": "A {{statusCode}} error occurred on server",
+  "error-without-status": "An error occurred on the server",
+  "price": "Price",
+  "specifications": "Specifications",
+  "length": "Length",
+  "width": "Width",
+  "height": "Height",
+  "weight": "Weight",
+  "seatWidth": "Seat width",
+  "seatHeight": "Seat height",
+  "seatDepth": "Seat depth",
+  "armrestHeight": "Armrest height",
+  "materials": "Materials",
+  "finish": "Finish",
+  "color": "Color",
+  "extra": "Extra",
+  "previous": "Previous",
+  "next": "Next"
+}

@@ -1,17 +1,50 @@
-import axios from "axios";
-import { GetServerSideProps } from "next";
 import ImageGallery from "react-image-gallery";
 import { useState } from "react";
-import { toLanguageDescriptionMap } from "../../utils";
+import {
+  flatten,
+  getFirstLevelCategory,
+  toLanguageDescriptionMap,
+  useTranslation,
+} from "../../utils";
 import { Layout } from "../../components/layout";
-import { useTranslation } from "react-i18next";
-import { getProducts } from "../../api";
+import { getCategoriesAndCategoryStructure, getProducts } from "../../api";
+import { useRouter } from "next/router";
+import { getStaticProps as categoryGetStaticProps } from "./index";
 
-export const getServerSideProps: GetServerSideProps = async ({
-  params: { category: categoryId }
-}) => {
+export async function getStaticPaths() {
+  const [[categoryStructure, categories]] = await Promise.all([
+    getCategoriesAndCategoryStructure(),
+    getProducts(),
+  ]);
+
+  console.log("getStaticPaths::products");
+  return {
+    paths: flatten(
+      (
+        await Promise.all(
+          getFirstLevelCategory(categoryStructure, categories)
+            .categories.map((category) => {
+              return {
+                params: { category: category.id },
+              };
+            })
+            .map((payload) => categoryGetStaticProps(payload as any)) as any
+        )
+      ).map((category: any) => {
+        return category.props.categories;
+      })
+    ).map((category: any) => {
+      return {
+        params: { category: category.id },
+      };
+    }),
+    fallback: true,
+  };
+}
+
+export const getStaticProps = async ({ params: { category: categoryId } }) => {
   const products = await getProducts();
-  const filteredProducts = products.filter(product => {
+  const filteredProducts = products.filter((product) => {
     return (
       product?.Main?.Id === categoryId ||
       product?.SubCategory1?.Id === categoryId ||
@@ -19,51 +52,55 @@ export const getServerSideProps: GetServerSideProps = async ({
     );
   });
 
+  console.log("getStaticProps::products");
+
   return {
     props: {
-      products: filteredProducts
-    }
+      products: filteredProducts,
+    },
+    revalidate: 120,
   };
 };
 
 const Products = ({ products }) => {
   const [productDisplayed, setProductDisplayed] = useState({
     index: 0,
-    id: products[0].ItemId
+    id: products?.[0].ItemId,
   });
+  const { t } = useTranslation();
 
-  const {
-    i18n: { language }
-  } = useTranslation();
+  const { locale } = useRouter();
+
+  const language = locale.toUpperCase();
 
   return (
     <Layout>
-      {products.map(product => {
+      {products?.map((product) => {
         const images = [
           product.Images?.Main
             ? {
                 original: product.Images?.Main,
-                thumbnail: product.Images?.Main
+                thumbnail: product.Images?.Main,
               }
             : null,
           product.Images?.Image1
             ? {
                 original: product.Images?.Image1,
-                thumbnail: product.Images?.Image1
+                thumbnail: product.Images?.Image1,
               }
             : null,
           product.Images?.Image2
             ? {
                 original: product.Images?.Image2,
-                thumbnail: product.Images?.Image2
+                thumbnail: product.Images?.Image2,
               }
             : null,
           product.Images?.Image3
             ? {
                 original: product.Images?.Image3,
-                thumbnail: product.Images?.Image3
+                thumbnail: product.Images?.Image3,
               }
-            : null
+            : null,
         ].filter(Boolean);
 
         return (
@@ -85,32 +122,32 @@ const Products = ({ products }) => {
             <div>
               <div>
                 {productDisplayed.index !== 0 && (
-                    <button
-                        onClick={() => {
-                          const index =
-                              (productDisplayed.index - 1) % products.length;
-                          setProductDisplayed({
-                            index,
-                            id: products[index].ItemId
-                          });
-                        }}
-                    >
-                      Previous
-                    </button>
+                  <button
+                    onClick={() => {
+                      const index =
+                        (productDisplayed.index - 1) % products.length;
+                      setProductDisplayed({
+                        index,
+                        id: products[index].ItemId,
+                      });
+                    }}
+                  >
+                    {t("previous")}
+                  </button>
                 )}
               </div>
               <div>
                 <button
-                    onClick={() => {
-                      const index =
-                          (productDisplayed.index + 1) % products.length;
-                      setProductDisplayed({
-                        index,
-                        id: products[index].ItemId
-                      });
-                    }}
+                  onClick={() => {
+                    const index =
+                      (productDisplayed.index + 1) % products.length;
+                    setProductDisplayed({
+                      index,
+                      id: products[index].ItemId,
+                    });
+                  }}
                 >
-                  Next
+                  {t("next")}
                 </button>
               </div>
             </div>
@@ -119,21 +156,21 @@ const Products = ({ products }) => {
                 className="text-xl lg:text-4xl font-hairline tracking-widest mb-3"
                 style={{ alignSelf: "baseline" }}
               >
-                {product.Name}
+                {product.Name} (#{product.ItemId})
               </h1>
               <div className="mb-8 text-md tracking-wide">
                 <p
                   dangerouslySetInnerHTML={{
                     __html: product.FunctionalDescription?.find(
-                      desc => desc.Language === language
-                    )?.Description
+                      (desc) => desc.Language === language
+                    )?.Description,
                   }}
                 />
                 <p
                   dangerouslySetInnerHTML={{
                     __html: product.LongDescription?.find(
-                      desc => desc.Language === language
-                    )?.Description
+                      (desc) => desc.Language === language
+                    )?.Description,
                   }}
                 />
               </div>
@@ -141,63 +178,105 @@ const Products = ({ products }) => {
                 className="text-lg font-hairline tracking-wide mb-3 italic"
                 style={{ alignSelf: "baseline" }}
               >
-                Specifications
+                {t("price")}:{" "}
+                {!product.Prices.DiscountedPrice ? (
+                  <span>{product.Prices.OriginalPrice} €</span>
+                ) : (
+                  <>
+                    <span
+                      className="mr-4"
+                      style={{ textDecoration: "line-through" }}
+                    >
+                      {product.Prices.OriginalPrice}
+                    </span>
+                    <span>{product.Prices.DiscountedPrice} €</span>
+                  </>
+                )}
+              </h3>
+              <h3
+                className="text-lg font-hairline tracking-wide mb-3 italic"
+                style={{ alignSelf: "baseline" }}
+              >
+                {t("specifications")}
               </h3>
               <div className="text-md tracking-wide">
                 <div className="pb-3">
                   <table>
                     <tbody className="table">
-                      <tr>
-                        <td>Length</td>
-                        <td>{product?.Sizes?.Length} cm</td>
-                      </tr>
-                      <tr>
-                        <td>Width</td>
-                        <td>{product?.Sizes?.Width} cm</td>
-                      </tr>
-                      <tr>
-                        <td>Height</td>
-                        <td>{product?.Sizes?.Height} cm</td>
-                      </tr>
-                      <tr>
-                        <td>Weight</td>
-                        <td>{product?.Sizes?.NetWeight} kg</td>
-                      </tr>
+                      {product?.Sizes?.Length ? (
+                        <tr>
+                          <td> {t("length")}</td>
+                          <td>{product?.Sizes?.Length} cm</td>
+                        </tr>
+                      ) : null}
+
+                      {product?.Sizes?.Width ? (
+                        <tr>
+                          <td> {t("width")}</td>
+                          <td>{product?.Sizes?.Width} cm</td>
+                        </tr>
+                      ) : null}
+
+                      {product?.Sizes?.Height ? (
+                        <tr>
+                          <td> {t("height")}</td>
+                          <td>{product?.Sizes?.Height} cm</td>
+                        </tr>
+                      ) : null}
+                      {product?.Sizes?.NetWeight ? (
+                        <tr>
+                          <td> {t("weight")}</td>
+                          <td>{product?.Sizes?.NetWeight} cm</td>
+                        </tr>
+                      ) : null}
                     </tbody>
                   </table>
                   <table>
                     <tbody className="table">
-                      <tr>
-                        <td>Seat width</td>
-                        <td>{product?.Sizes?.SitWidth} cm</td>
-                      </tr>
-                      <tr>
-                        <td>Seat height</td>
-                        <td>{product?.Sizes?.SitHeight} cm</td>
-                      </tr>
-                      <tr>
-                        <td>Seat depth</td>
-                        <td>{product?.Sizes?.SitDepth} cm</td>
-                      </tr>
-                      <tr>
-                        <td>Armrest height</td>
-                        <td>{product?.Sizes?.ArmHeight} cm</td>
-                      </tr>
+                      {product?.Sizes?.SitWidth ? (
+                        <tr>
+                          <td> {t("seatWidth")}</td>
+                          <td>{product?.Sizes?.SitWidth} cm</td>
+                        </tr>
+                      ) : null}
+                      {product?.Sizes?.SitHeight ? (
+                        <tr>
+                          <td> {t("seatHeight")}</td>
+                          <td>{product?.Sizes?.SitHeight} cm</td>
+                        </tr>
+                      ) : null}
+
+                      {product?.Sizes?.SitDepth ? (
+                        <tr>
+                          <td> {t("seatDepth")}</td>
+                          <td>{product?.Sizes?.SitDepth} cm</td>
+                        </tr>
+                      ) : null}
+
+                      {product?.Sizes?.ArmHeight ? (
+                        <tr>
+                          <td> {t("armrestHeight")}</td>
+                          <td>{product?.Sizes?.ArmHeight} cm</td>
+                        </tr>
+                      ) : null}
                     </tbody>
                   </table>
                 </div>
               </div>
-              <h3
-                className="text-lg font-hairline tracking-wide mb-2 italic"
-                style={{ alignSelf: "baseline" }}
-              >
-                Materiaux
-              </h3>
+              {product.Materials?.length > 0 ? (
+                <h3
+                  className="text-lg font-hairline tracking-wide mb-2 italic"
+                  style={{ alignSelf: "baseline" }}
+                >
+                  {t("materials")}
+                </h3>
+              ) : null}
+
               <div className="text-md tracking-wide">
                 <div className="pb-8">
                   <table>
                     <tbody className="table">
-                      {product.Materials.map(material => {
+                      {product.Materials?.map((material, index) => {
                         const part = toLanguageDescriptionMap(material?.Parts)[
                           language
                         ];
@@ -210,7 +289,7 @@ const Products = ({ products }) => {
                         )[language];
 
                         return (
-                          <tr key={part + mat + detail}>
+                          <tr key={index}>
                             <td>{part || null}</td>
                             <td>
                               {mat || null}
@@ -223,32 +302,42 @@ const Products = ({ products }) => {
                   </table>
                   <table>
                     <tbody className="table">
-                      <tr>
-                        <td>Finish</td>
-                        <td>
-                          {toLanguageDescriptionMap(product.Finish)[language]}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Color</td>
-                        <td>
-                          {
-                            toLanguageDescriptionMap(product.ColorFamily)[
-                              language
-                            ]
-                          }
-                        </td>
-                      </tr>
+                      {toLanguageDescriptionMap(product.Finish)[language] ? (
+                        <tr>
+                          <td> {t("finish")}</td>
+                          <td>
+                            {toLanguageDescriptionMap(product.Finish)[language]}
+                          </td>
+                        </tr>
+                      ) : null}
+                      {toLanguageDescriptionMap(product.ColorFamily)[
+                        language
+                      ] ? (
+                        <tr>
+                          <td>{t("color")}</td>
+                          <td>
+                            {
+                              toLanguageDescriptionMap(product.ColorFamily)[
+                                language
+                              ]
+                            }
+                          </td>
+                        </tr>
+                      ) : null}
                     </tbody>
                   </table>
                 </div>
               </div>
-              <h3
-                className="text-lg font-hairline tracking-wide mb-2 italic"
-                style={{ alignSelf: "baseline" }}
-              >
-                Extra
-              </h3>
+              {toLanguageDescriptionMap(product.Maintenance)[language] ||
+              toLanguageDescriptionMap(product.Remark)[language] ? (
+                <h3
+                  className="text-lg font-hairline tracking-wide mb-2 italic"
+                  style={{ alignSelf: "baseline" }}
+                >
+                  {t("extra")}
+                </h3>
+              ) : null}
+
               <div className="text-md tracking-wide">
                 <div className="pb-8">
                   <p>
