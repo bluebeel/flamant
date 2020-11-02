@@ -8,7 +8,7 @@ export const Layout = ({ children }) => {
   const router = useRouter();
 
   return (
-    <>
+    <div className="h-screen flex flex-col">
       <div className="pt-8 pb-2 mb-16">
         <Head>
           <title>Flamant</title>
@@ -50,7 +50,7 @@ export const Layout = ({ children }) => {
               <Logo />
             </a>
           </Link>
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-row justify-between text-3xl">
             {router.locales?.map((locale) => {
               return (
                 <Link href={router.asPath} locale={locale} key={locale}>
@@ -63,6 +63,6 @@ export const Layout = ({ children }) => {
       </div>
 
       {children}
-    </>
+    </div>
   );
 };
