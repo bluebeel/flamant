@@ -103,16 +103,10 @@ const Products = ({ products }) => {
             : null,
         ].filter(Boolean);
 
-        const cn =
-          product.ItemId !== productDisplayed.id
-            ? "hidden"
-            : "flex flex-row justify-center items-start flex-grow";
-
-        return (
+        return product.ItemId !== productDisplayed.id ? null : (
           <div
-            className={cn}
+            className={"flex flex-row justify-center items-start flex-grow"}
             key={product.ItemId}
-            hidden={product.ItemId !== productDisplayed.id}
           >
             <div id="left" className="w-20 self-center">
               {productDisplayed.index !== 0 && (
