@@ -103,12 +103,8 @@ const Products = ({ products }) => {
             : null,
         ].filter(Boolean);
 
-        return (
-          <div
-            className="container mx-auto px-8"
-            key={product.ItemId}
-            hidden={product.ItemId !== productDisplayed.id}
-          >
+        return product.ItemId !== productDisplayed.id ? null : (
+          <div className="container mx-auto px-8" key={product.ItemId}>
             <ImageGallery
               items={images}
               showNav={false}
