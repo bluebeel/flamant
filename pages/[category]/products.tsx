@@ -103,249 +103,283 @@ const Products = ({ products }) => {
             : null,
         ].filter(Boolean);
 
+        const cn =
+          product.ItemId !== productDisplayed.id
+            ? "hidden"
+            : "flex flex-row justify-center items-start flex-grow";
+
         return (
           <div
-            className="container mx-auto px-8"
+            className={cn}
             key={product.ItemId}
             hidden={product.ItemId !== productDisplayed.id}
           >
-            <ImageGallery
-              items={images}
-              showNav={false}
-              lazyLoad={true}
-              showPlayButton={false}
-              showFullscreenButton={false}
-              disableSwipe={false}
-              disableArrowKeys={true}
-              additionalClass="w-full mb-8"
-            />
-            <div>
-              <div>
-                {productDisplayed.index !== 0 && (
-                  <button
-                    onClick={() => {
-                      const index =
-                        (productDisplayed.index - 1) % products.length;
-                      setProductDisplayed({
-                        index,
-                        id: products[index].ItemId,
-                      });
-                    }}
-                  >
-                    {t("previous")}
-                  </button>
-                )}
-              </div>
-              <div>
+            <div id="left" className="w-20 self-center">
+              {productDisplayed.index !== 0 && (
                 <button
                   onClick={() => {
                     const index =
-                      (productDisplayed.index + 1) % products.length;
+                      (productDisplayed.index - 1) % products.length;
                     setProductDisplayed({
                       index,
                       id: products[index].ItemId,
                     });
                   }}
                 >
-                  {t("next")}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-20 w-20 text-blue-700"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
                 </button>
-              </div>
+              )}
             </div>
-            <div className="mx-auto">
-              <h1
-                className="text-xl lg:text-4xl font-hairline tracking-widest mb-3"
-                style={{ alignSelf: "baseline" }}
-              >
-                {product.Name} (#{product.ItemId})
-              </h1>
-              <div className="mb-8 text-md tracking-wide">
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: product.FunctionalDescription?.find(
-                      (desc) => desc.Language === language
-                    )?.Description,
-                  }}
-                />
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: product.LongDescription?.find(
-                      (desc) => desc.Language === language
-                    )?.Description,
-                  }}
-                />
-              </div>
-              <h3
-                className="text-lg font-hairline tracking-wide mb-3 italic"
-                style={{ alignSelf: "baseline" }}
-              >
-                {t("price")}:{" "}
-                {!product.Prices.DiscountedPrice ? (
-                  <span>{product.Prices.OriginalPrice} €</span>
-                ) : (
-                  <>
-                    <span
-                      className="mr-4"
-                      style={{ textDecoration: "line-through" }}
-                    >
-                      {product.Prices.OriginalPrice}
-                    </span>
-                    <span>{product.Prices.DiscountedPrice} €</span>
-                  </>
-                )}
-              </h3>
-              <h3
-                className="text-lg font-hairline tracking-wide mb-3 italic"
-                style={{ alignSelf: "baseline" }}
-              >
-                {t("specifications")}
-              </h3>
-              <div className="text-md tracking-wide">
-                <div className="pb-3">
-                  <table>
-                    <tbody className="table">
-                      {product?.Sizes?.Length ? (
-                        <tr>
-                          <td> {t("length")}</td>
-                          <td>{product?.Sizes?.Length} cm</td>
-                        </tr>
-                      ) : null}
-
-                      {product?.Sizes?.Width ? (
-                        <tr>
-                          <td> {t("width")}</td>
-                          <td>{product?.Sizes?.Width} cm</td>
-                        </tr>
-                      ) : null}
-
-                      {product?.Sizes?.Height ? (
-                        <tr>
-                          <td> {t("height")}</td>
-                          <td>{product?.Sizes?.Height} cm</td>
-                        </tr>
-                      ) : null}
-                      {product?.Sizes?.NetWeight ? (
-                        <tr>
-                          <td> {t("weight")}</td>
-                          <td>{product?.Sizes?.NetWeight} cm</td>
-                        </tr>
-                      ) : null}
-                    </tbody>
-                  </table>
-                  <table>
-                    <tbody className="table">
-                      {product?.Sizes?.SitWidth ? (
-                        <tr>
-                          <td> {t("seatWidth")}</td>
-                          <td>{product?.Sizes?.SitWidth} cm</td>
-                        </tr>
-                      ) : null}
-                      {product?.Sizes?.SitHeight ? (
-                        <tr>
-                          <td> {t("seatHeight")}</td>
-                          <td>{product?.Sizes?.SitHeight} cm</td>
-                        </tr>
-                      ) : null}
-
-                      {product?.Sizes?.SitDepth ? (
-                        <tr>
-                          <td> {t("seatDepth")}</td>
-                          <td>{product?.Sizes?.SitDepth} cm</td>
-                        </tr>
-                      ) : null}
-
-                      {product?.Sizes?.ArmHeight ? (
-                        <tr>
-                          <td> {t("armrestHeight")}</td>
-                          <td>{product?.Sizes?.ArmHeight} cm</td>
-                        </tr>
-                      ) : null}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              {product.Materials?.length > 0 ? (
-                <h3
-                  className="text-lg font-hairline tracking-wide mb-2 italic"
+            <div className="container max-w-4xl px-8">
+              <ImageGallery
+                items={images}
+                showNav={false}
+                lazyLoad={true}
+                showPlayButton={false}
+                showFullscreenButton={false}
+                disableSwipe={false}
+                disableArrowKeys={true}
+                additionalClass="w-full mb-8"
+              />
+              <div className="mx-auto">
+                <h1
+                  className="text-xl lg:text-4xl font-hairline tracking-widest mb-3"
                   style={{ alignSelf: "baseline" }}
                 >
-                  {t("materials")}
+                  {product.Name} (#{product.ItemId})
+                </h1>
+                <div className="mb-8 text-md tracking-wide">
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: product.FunctionalDescription?.find(
+                        (desc) => desc.Language === language
+                      )?.Description,
+                    }}
+                  />
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: product.LongDescription?.find(
+                        (desc) => desc.Language === language
+                      )?.Description,
+                    }}
+                  />
+                </div>
+                <h3
+                  className="text-lg font-hairline tracking-wide mb-3 italic"
+                  style={{ alignSelf: "baseline" }}
+                >
+                  {t("price")}:{" "}
+                  {!product.Prices.DiscountedPrice ? (
+                    <span>{product.Prices.OriginalPrice} €</span>
+                  ) : (
+                    <>
+                      <span
+                        className="mr-4"
+                        style={{ textDecoration: "line-through" }}
+                      >
+                        {product.Prices.OriginalPrice}
+                      </span>
+                      <span>{product.Prices.DiscountedPrice} €</span>
+                    </>
+                  )}
                 </h3>
-              ) : null}
+                <h3
+                  className="text-lg font-hairline tracking-wide mb-3 italic"
+                  style={{ alignSelf: "baseline" }}
+                >
+                  {t("specifications")}
+                </h3>
+                <div className="text-md tracking-wide">
+                  <div className="pb-3">
+                    <table>
+                      <tbody className="table">
+                        {product?.Sizes?.Length ? (
+                          <tr>
+                            <td> {t("length")}</td>
+                            <td>{product?.Sizes?.Length} cm</td>
+                          </tr>
+                        ) : null}
 
-              <div className="text-md tracking-wide">
-                <div className="pb-8">
-                  <table>
-                    <tbody className="table">
-                      {product.Materials?.map((material, index) => {
-                        const part = toLanguageDescriptionMap(material?.Parts)[
-                          language
-                        ];
-                        const mat = toLanguageDescriptionMap(material?.Mats)[
-                          language
-                        ];
+                        {product?.Sizes?.Width ? (
+                          <tr>
+                            <td> {t("width")}</td>
+                            <td>{product?.Sizes?.Width} cm</td>
+                          </tr>
+                        ) : null}
 
-                        const detail = toLanguageDescriptionMap(
-                          material?.Details
-                        )[language];
+                        {product?.Sizes?.Height ? (
+                          <tr>
+                            <td> {t("height")}</td>
+                            <td>{product?.Sizes?.Height} cm</td>
+                          </tr>
+                        ) : null}
+                        {product?.Sizes?.NetWeight ? (
+                          <tr>
+                            <td> {t("weight")}</td>
+                            <td>{product?.Sizes?.NetWeight} cm</td>
+                          </tr>
+                        ) : null}
+                      </tbody>
+                    </table>
+                    <table>
+                      <tbody className="table">
+                        {product?.Sizes?.SitWidth ? (
+                          <tr>
+                            <td> {t("seatWidth")}</td>
+                            <td>{product?.Sizes?.SitWidth} cm</td>
+                          </tr>
+                        ) : null}
+                        {product?.Sizes?.SitHeight ? (
+                          <tr>
+                            <td> {t("seatHeight")}</td>
+                            <td>{product?.Sizes?.SitHeight} cm</td>
+                          </tr>
+                        ) : null}
 
-                        return (
-                          <tr key={index}>
-                            <td>{part || null}</td>
+                        {product?.Sizes?.SitDepth ? (
+                          <tr>
+                            <td> {t("seatDepth")}</td>
+                            <td>{product?.Sizes?.SitDepth} cm</td>
+                          </tr>
+                        ) : null}
+
+                        {product?.Sizes?.ArmHeight ? (
+                          <tr>
+                            <td> {t("armrestHeight")}</td>
+                            <td>{product?.Sizes?.ArmHeight} cm</td>
+                          </tr>
+                        ) : null}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                {product.Materials?.length > 0 ? (
+                  <h3
+                    className="text-lg font-hairline tracking-wide mb-2 italic"
+                    style={{ alignSelf: "baseline" }}
+                  >
+                    {t("materials")}
+                  </h3>
+                ) : null}
+
+                <div className="text-md tracking-wide">
+                  <div className="pb-8">
+                    <table>
+                      <tbody className="table">
+                        {product.Materials?.map((material, index) => {
+                          const part = toLanguageDescriptionMap(
+                            material?.Parts
+                          )[language];
+                          const mat = toLanguageDescriptionMap(material?.Mats)[
+                            language
+                          ];
+
+                          const detail = toLanguageDescriptionMap(
+                            material?.Details
+                          )[language];
+
+                          return (
+                            <tr key={index}>
+                              <td>{part || null}</td>
+                              <td>
+                                {mat || null}
+                                {detail ? `, ${detail}` : null}
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                    <table>
+                      <tbody className="table">
+                        {toLanguageDescriptionMap(product.Finish)[language] ? (
+                          <tr>
+                            <td> {t("finish")}</td>
                             <td>
-                              {mat || null}
-                              {detail ? `, ${detail}` : null}
+                              {
+                                toLanguageDescriptionMap(product.Finish)[
+                                  language
+                                ]
+                              }
                             </td>
                           </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                  <table>
-                    <tbody className="table">
-                      {toLanguageDescriptionMap(product.Finish)[language] ? (
-                        <tr>
-                          <td> {t("finish")}</td>
-                          <td>
-                            {toLanguageDescriptionMap(product.Finish)[language]}
-                          </td>
-                        </tr>
-                      ) : null}
-                      {toLanguageDescriptionMap(product.ColorFamily)[
-                        language
-                      ] ? (
-                        <tr>
-                          <td>{t("color")}</td>
-                          <td>
-                            {
-                              toLanguageDescriptionMap(product.ColorFamily)[
-                                language
-                              ]
-                            }
-                          </td>
-                        </tr>
-                      ) : null}
-                    </tbody>
-                  </table>
+                        ) : null}
+                        {toLanguageDescriptionMap(product.ColorFamily)[
+                          language
+                        ] ? (
+                          <tr>
+                            <td>{t("color")}</td>
+                            <td>
+                              {
+                                toLanguageDescriptionMap(product.ColorFamily)[
+                                  language
+                                ]
+                              }
+                            </td>
+                          </tr>
+                        ) : null}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              </div>
-              {toLanguageDescriptionMap(product.Maintenance)[language] ||
-              toLanguageDescriptionMap(product.Remark)[language] ? (
-                <h3
-                  className="text-lg font-hairline tracking-wide mb-2 italic"
-                  style={{ alignSelf: "baseline" }}
-                >
-                  {t("extra")}
-                </h3>
-              ) : null}
+                {toLanguageDescriptionMap(product.Maintenance)[language] ||
+                toLanguageDescriptionMap(product.Remark)[language] ? (
+                  <h3
+                    className="text-lg font-hairline tracking-wide mb-2 italic"
+                    style={{ alignSelf: "baseline" }}
+                  >
+                    {t("extra")}
+                  </h3>
+                ) : null}
 
-              <div className="text-md tracking-wide">
-                <div className="pb-8">
-                  <p>
-                    {toLanguageDescriptionMap(product.Maintenance)[language]}
-                  </p>
-                  <p>{toLanguageDescriptionMap(product.Remark)[language]}</p>
+                <div className="text-md tracking-wide">
+                  <div className="pb-8">
+                    <p>
+                      {toLanguageDescriptionMap(product.Maintenance)[language]}
+                    </p>
+                    <p>{toLanguageDescriptionMap(product.Remark)[language]}</p>
+                  </div>
                 </div>
               </div>
+            </div>
+            <div id="right" className="w-20 self-center">
+              <button
+                onClick={() => {
+                  const index = (productDisplayed.index + 1) % products.length;
+                  setProductDisplayed({
+                    index,
+                    id: products[index].ItemId,
+                  });
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-20 w-20 text-blue-700"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
         );
