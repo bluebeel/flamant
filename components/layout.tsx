@@ -46,7 +46,8 @@ export const Layout = ({ children }) => {
             </div>
           )}
           <Link href="/">
-            <a className="no-underline opacity-100 w-auto text-center">
+            <a className="no-underline opacity-100 w-auto text-center inline-flex">
+              <img src="/google-home.png" className="w-24 mr-4" />
               <Logo />
             </a>
           </Link>

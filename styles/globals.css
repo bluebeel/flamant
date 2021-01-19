@@ -14,3 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.image-gallery-thumbnail {
+  width: 200px !important;
+}
