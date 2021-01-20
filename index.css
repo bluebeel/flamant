@@ -21914,10 +21914,6 @@ video {
           animation: bounce 1s infinite;
 }
 
-.image-gallery-thumbnail {
-  width: 200px !important;
-}
-
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
