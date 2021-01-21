@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { CategoryCardList } from "../components/category-card-list";
 import { getFirstLevelCategory } from "../utils";
 import { getCategoriesAndCategoryStructure } from "../api";
-import { Layout } from "../components/layout";
+import { Layout } from "../components/layoutHome";
 import { useRouter } from "next/router";
 
 export const getStaticProps: GetServerSideProps = async (context) => {

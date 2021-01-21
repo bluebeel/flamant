@@ -1,7 +1,6 @@
 import Head from "next/head";
 import React from "react";
 import Link from "next/link";
-import { Logo } from "./logo";
 import { useRouter } from "next/router";
 
 export const Layout = ({ children }) => {
@@ -15,41 +14,25 @@ export const Layout = ({ children }) => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className="pt-3 flex px-10 my-0 mx-auto pb-0 w-full items-center justify-between">
-          {router.route === "/" ? (
-            <Link href="/" locale={router.locale}>
-              <a className="no-underline opacity-100">
-                <svg
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="h-20 w-20 text-flamant-body"
-                >
-                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-                </svg>
-              </a>
-            </Link>
-          ) : (
-            <div
-              className="no-underline opacity-100"
-              onClick={() => router.back()}
+          <div
+            className="no-underline opacity-100"
+            onClick={() => router.back()}
+          >
+            <svg
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="h-20 w-20 text-flamant-body"
             >
-              <svg
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="h-20 w-20 text-flamant-body"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-          )}
+              <path
+                fillRule="evenodd"
+                d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
           <Link href="/">
             <a className="no-underline opacity-100 w-auto text-center inline-flex">
-              {
-                router.route === "/" ? <Logo /> : <img src="/google-home.png" className="w-32 mr-4" />
-              }
+              <img src="/google-home.png" className="w-32 mr-4" />
             </a>
           </Link>
           <div className="flex flex-row justify-between text-3xl">
