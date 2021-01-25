@@ -24,15 +24,16 @@ export const Layout = ({ children }) => {
           })}
         </div>
         <div className="pt-3 flex px-10 my-0 mx-auto pb-0 w-full items-center justify-center">
-          <Link href="/">
-            <a className="no-underline opacity-100 w-auto text-center inline-flex">
-              {router.route === "/" ? (
-                <Logo />
-              ) : (
-                <img src="/google-home.png" className="w-32 mr-4" />
-              )}
-            </a>
-          </Link>
+          <a
+            href="/"
+            className="no-underline opacity-100 w-auto text-center inline-flex"
+          >
+            {router.route === "/" ? (
+              <Logo />
+            ) : (
+              <img src="/google-home.png" className="w-32 mr-4" />
+            )}
+          </a>
         </div>
       </div>
 

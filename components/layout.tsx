@@ -30,11 +30,9 @@ export const Layout = ({ children }) => {
               />
             </svg>
           </div>
-          <Link href="/">
-            <a className="no-underline opacity-100 w-auto text-center inline-flex">
-              <img src="/google-home.png" className="w-32 mr-4" />
-            </a>
-          </Link>
+          <a className="no-underline opacity-100 w-auto text-center inline-flex">
+            <img src="/google-home.png" className="w-32 mr-4" />
+          </a>
           <div className="flex flex-row justify-between text-3xl">
             {router.locales?.map((locale) => {
               return (
