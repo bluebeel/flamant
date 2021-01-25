@@ -49,6 +49,19 @@ export async function getStaticPaths() {
 export const getStaticProps: GetServerSideProps = async ({
   params: { category: categoryId },
 }) => {
+  if (categoryId === "fr" || categoryId === "nl" || categoryId === "en") {
+    const [
+      categoryStructure,
+      categories,
+    ] = await getCategoriesAndCategoryStructure();
+
+    return {
+      props: {
+        ...getFirstLevelCategory(categoryStructure, categories),
+      },
+      revalidate: 120,
+    };
+  }
   const [
     categoryStructure,
     categories,
