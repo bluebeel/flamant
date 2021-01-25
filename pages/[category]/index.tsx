@@ -3,6 +3,7 @@ import groupBy from "lodash.groupby";
 import { CategoryCardList } from "../../components/category-card-list";
 import { getCategoriesAndCategoryStructure } from "../../api";
 import {
+  flatten,
   getFirstLevelCategory,
   toLanguageDescriptionMap,
   uniq,
@@ -21,12 +22,25 @@ export async function getStaticPaths() {
   );
 
   return {
-    paths: getFirstLevelCategory(categoryStructure, categories).categories.map(
-      (category) => {
-        return {
-          params: { category: category.id },
-        };
-      }
+    paths: flatten(
+      getFirstLevelCategory(categoryStructure, categories).categories.map(
+        (category) => {
+          return [
+            {
+              params: { category: category.id },
+              locale: "fr",
+            },
+            {
+              params: { category: category.id },
+              locale: "nl",
+            },
+            {
+              params: { category: category.id },
+              locale: "en",
+            },
+          ];
+        }
+      )
     ),
     fallback: true,
   };
