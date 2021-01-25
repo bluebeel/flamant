@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6be3041-80aa-4182-a626-efd80635c85a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[category]/products.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/[category]/products.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,23 +54,6 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.dev" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
@@ -97,15 +79,7 @@
       <workItem from="1603993311743" duration="7363000" />
       <workItem from="1604171616220" duration="6000" />
       <workItem from="1604232451278" duration="1069000" />
-      <workItem from="1607786839354" duration="928000" />
-      <workItem from="1607796741344" duration="666000" />
-      <workItem from="1608140789370" duration="599000" />
-      <workItem from="1608406127650" duration="595000" />
-      <workItem from="1608798115772" duration="306000" />
-      <workItem from="1608798487923" duration="596000" />
-      <workItem from="1611054109880" duration="871000" />
-      <workItem from="1611134092963" duration="4000" />
-      <workItem from="1611572872533" duration="1623000" />
+      <workItem from="1607786839354" duration="466000" />
     </task>
     <servers />
   </component>
