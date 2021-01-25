@@ -49,7 +49,7 @@ export async function getStaticPaths() {
 export const getStaticProps: GetServerSideProps = async ({
   params: { category: categoryId },
 }) => {
-  if (categoryId === "fr" || categoryId === "nl" || categoryId === "en") {
+  if (!categoryId) {
     const [
       categoryStructure,
       categories,
@@ -62,6 +62,7 @@ export const getStaticProps: GetServerSideProps = async ({
       revalidate: 120,
     };
   }
+
   const [
     categoryStructure,
     categories,
