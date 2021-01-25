@@ -5,9 +5,9 @@ import {
   getFirstLevelCategory,
   toLanguageDescriptionMap,
   useTranslation,
-} from "../../utils";
-import { Layout } from "../../components/layout";
-import { getCategoriesAndCategoryStructure, getProducts } from "../../api";
+} from "../../../utils";
+import { Layout } from "../../../components/layout";
+import { getCategoriesAndCategoryStructure, getProducts } from "../../../api";
 import { useRouter } from "next/router";
 import { getStaticProps as categoryGetStaticProps } from "./index";
 
@@ -108,7 +108,11 @@ const Products = ({ products }) => {
             className={"flex flex-row justify-center items-start flex-grow"}
             key={product.ItemId}
           >
-            <div id="left" className="w-20 self-center absolute left-0" style={{top: "50%"}}>
+            <div
+              id="left"
+              className="w-20 self-center absolute left-0"
+              style={{ top: "50%" }}
+            >
               {productDisplayed.index !== 0 && (
                 <button
                   onClick={() => {
@@ -336,7 +340,11 @@ const Products = ({ products }) => {
                 </div>
               </div>
             </div>
-            <div id="right" className="w-20 self-center absolute right-0" style={{top: "50%"}}>
+            <div
+              id="right"
+              className="w-20 self-center absolute right-0"
+              style={{ top: "50%" }}
+            >
               <button
                 onClick={() => {
                   const index = (productDisplayed.index + 1) % products.length;

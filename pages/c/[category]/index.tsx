@@ -1,14 +1,14 @@
 import { GetServerSideProps } from "next";
 import groupBy from "lodash.groupby";
-import { CategoryCardList } from "../../components/category-card-list";
-import { getCategoriesAndCategoryStructure } from "../../api";
+import { CategoryCardList } from "../../../components/category-card-list";
+import { getCategoriesAndCategoryStructure } from "../../../api";
 import {
   flatten,
   getFirstLevelCategory,
   toLanguageDescriptionMap,
   uniq,
-} from "../../utils";
-import { Layout } from "../../components/layout";
+} from "../../../utils";
+import { Layout } from "../../../components/layout";
 import { useRouter } from "next/router";
 
 export async function getStaticPaths() {
