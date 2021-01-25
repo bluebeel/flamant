@@ -13,17 +13,20 @@ export const getStaticProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      lol: getFirstLevelCategory(categoryStructure, categories).categories,
+      ...getFirstLevelCategory(categoryStructure, categories),
     },
     revalidate: 120,
   };
 };
 
-const Home = ({ lol }) => {
+const Home = ({ categories }) => {
   const { locale } = useRouter();
   return (
     <Layout>
-      <CategoryCardList categories={lol} language={locale.toUpperCase()} />
+      <CategoryCardList
+        categories={categories}
+        language={locale.toUpperCase()}
+      />
     </Layout>
   );
 };

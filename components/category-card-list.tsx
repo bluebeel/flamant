@@ -11,7 +11,7 @@ export const CategoryCardList = ({ categories, language }) => {
     <div className="container mx-auto">
       <section className="flex items-start flex-wrap justify-between lg:my-10 my-6 lg:mx-8">
         {categories.map((categorie) => {
-          let href = "/" + categorie.id;
+          let href = "/c/" + categorie.id;
           if (categorie?.children?.length === 0) {
             href = href + "/products";
           }
