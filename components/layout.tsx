@@ -30,7 +30,7 @@ export const Layout = ({ children }) => {
               />
             </svg>
           </div>
-          <a className="no-underline opacity-100 w-auto text-center inline-flex">
+          <a href="/" className="no-underline opacity-100 w-auto text-center inline-flex">
             <img src="/google-home.png" className="w-32 mr-4" />
           </a>
           <div className="flex flex-row justify-between text-3xl">
