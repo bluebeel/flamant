@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 
 export const Layout = ({ children }) => {
   const router = useRouter();
-
   return (
     <div className="h-screen flex flex-col">
       <div className="pt-8 pb-2 mb-16">
@@ -30,13 +29,20 @@ export const Layout = ({ children }) => {
               />
             </svg>
           </div>
-          <a href="/" className="no-underline opacity-100 w-auto text-center inline-flex">
+          <a
+            href={`/${router.locale}`}
+            className="no-underline opacity-100 w-auto text-center inline-flex"
+          >
             <img src="/google-home.png" className="w-32 mr-4" />
           </a>
           <div className="flex flex-row justify-between text-3xl">
             {router.locales?.map((locale) => {
               return (
-                <Link href={router.asPath} locale={locale} key={locale}>
+                <Link
+                  href={`/${locale}${router.asPath}`}
+                  locale={false}
+                  key={locale}
+                >
                   <a className="mb-2 mx-2">{locale?.toUpperCase()}</a>
                 </Link>
               );

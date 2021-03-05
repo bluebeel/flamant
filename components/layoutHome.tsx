@@ -17,7 +17,11 @@ export const Layout = ({ children }) => {
         <div className="pt-3 flex px-10 my-0 mx-auto pb-0 w-full items-center justify-end text-3xl">
           {router.locales?.map((locale) => {
             return (
-              <Link href={router.asPath} locale={locale} key={locale}>
+              <Link
+                href={`/${locale}${router.asPath}`}
+                locale={false}
+                key={locale}
+              >
                 <a className="mb-2 mx-2">{locale?.toUpperCase()}</a>
               </Link>
             );
@@ -25,7 +29,7 @@ export const Layout = ({ children }) => {
         </div>
         <div className="pt-3 flex px-10 my-0 mx-auto pb-0 w-full items-center justify-center">
           <a
-            href="/"
+            href={`/${router.locale}`}
             className="no-underline opacity-100 w-auto text-center inline-flex"
           >
             {router.route === "/" ? (

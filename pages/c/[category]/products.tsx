@@ -65,7 +65,7 @@ export const getStaticProps = async ({ params: { category: categoryId } }) => {
 const Products = ({ products }) => {
   const [productDisplayed, setProductDisplayed] = useState({
     index: 0,
-    id: products?.[0].ItemId,
+    id: products?.[0]?.ItemId,
   });
   const { t } = useTranslation();
 
@@ -167,7 +167,9 @@ const Products = ({ products }) => {
                   style={{ alignSelf: "baseline" }}
                 >
                   {t("price")}:{" "}
-                  {!product.Prices.DiscountedPrice ? (
+                  {!product.Prices.DiscountedPrice ||
+                  product.Prices.OriginalPrice?.toString() ===
+                    product.Prices.DiscountedPrice?.toString() ? (
                     <span>{product.Prices.OriginalPrice} €</span>
                   ) : (
                     <>
