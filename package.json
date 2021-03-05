@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "predev": "tailwind build ./index.tailwind.css -c ./tailwind.config.js -o ./index.css",
-    "prebuild": "tailwind build ./index.tailwind.css -c ./tailwind.config.js -o ./index.css",
+    "prebuild": "tailwind build ./index.tailwind.css -c ./tailwind.config.js -o ./index.css && npm run cache:products ",
+    "cache:products": "curl --location --request GET 'https://app.flamant.com:8004/PIM/Ecommerce/Products' \\\n--header 'Authorization: Basic RXllQ2F0Y2hlcjo3a3Y0eTc3YTJn' -s -S -f -o cache-products.json",
     "install": "npm run build",
     "dev": "next dev",
     "build": "next build",
