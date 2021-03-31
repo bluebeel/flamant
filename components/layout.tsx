@@ -4,17 +4,27 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useIdleTimer } from "react-idle-timer";
 import Image from "next/image";
-import { bgWrap, idleContainer } from "./layout.module.css";
 
 export const Layout = ({ children }) => {
   const router = useRouter();
+  const [isIdle, setIdle] = useState(false);
 
-  console.log("here")
+  const handleOnIdle = event => {
+    console.log('user is idle', event)
+    setIdle(true)
+  }
 
-  const { isIdle } = useIdleTimer({
+  const handleOnActive = event => {
+    console.log('user is active', event)
+    setIdle(false)
+  }
+
+  const timer = useIdleTimer({
     timeout: 1000 * 10,
-    debounce: 500,
-  });
+    onIdle: handleOnIdle,
+    onActive: handleOnActive,
+    debounce: 500
+  })
 
   return (
     <div className="h-screen flex flex-col">
@@ -64,8 +74,9 @@ export const Layout = ({ children }) => {
 
       {children}
       
-      {isIdle ? <div className={idleContainer}>
-        <div className={bgWrap}>
+      {isIdle ? <div className="idleContainer">
+        <li className="bgWrap">
+
           <Image
             alt="Mountains"
             src="https://images.unsplash.com/photo-1617213146999-f33c20d2a534"
@@ -73,7 +84,37 @@ export const Layout = ({ children }) => {
             objectFit="cover"
             quality={100}
           />
-        </div>
+        </li>
+        <li className="bgWrap">
+
+          <Image
+            alt="Mountains"
+            src="https://images.unsplash.com/photo-1600564276091-0c1f17bf178c"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+          />
+        </li>
+        <li className="bgWrap">
+
+          <Image
+            alt="Mountains"
+            src="https://images.unsplash.com/photo-1549968479-4223c52f1acd"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+          />
+        </li>
+        <li className="bgWrap">
+
+          <Image
+            alt="Mountains"
+            src="https://images.unsplash.com/photo-1549896869-ca27eeffe4fb"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+          />
+        </li>
       </div> : null}
       
     </div>
