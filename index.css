@@ -16427,7 +16427,6 @@ video {
 }
 
 .sticky {
-  position: -webkit-sticky;
   position: sticky;
 }
 
@@ -21912,6 +21911,111 @@ video {
 .animate-bounce {
   -webkit-animation: bounce 1s infinite;
           animation: bounce 1s infinite;
+}
+
+.idleContainer {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  top: 0px;
+  left: 0px;
+  z-index: 500;
+  background: #000;
+}
+
+.idleContainer li div {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  inset: 0px;
+  box-sizing: border-box;
+  margin: 0px;
+  color: transparent;
+  opacity: 0;
+  z-index: 0;
+  -webkit-animation: imageAnimation 24s linear infinite 0s;
+          animation: imageAnimation 24s linear infinite 0s;
+}
+
+.idleContainer:after {
+  content: "";
+  background: transparent url("/pattern.png") repeat top left;
+}
+
+.idleContainer li:nth-child(2) div {
+  -webkit-animation-delay: 6s;
+          animation-delay: 6s;
+}
+
+.idleContainer li:nth-child(3) div {
+  -webkit-animation-delay: 12s;
+          animation-delay: 12s;
+}
+
+.idleContainer li:nth-child(4) div {
+  -webkit-animation-delay: 18s;
+          animation-delay: 18s;
+}
+
+.bgWrap {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  z-index: 0;
+}
+
+@-webkit-keyframes imageAnimation {
+  0% {
+    opacity: 0;
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+
+  8% {
+    opacity: 1;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+
+  17% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes imageAnimation {
+  0% {
+    opacity: 0;
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+
+  8% {
+    opacity: 1;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+
+  17% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 @media (min-width: 640px) {
@@ -37752,7 +37856,6 @@ video {
   }
 
   .sm\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -59012,7 +59115,6 @@ video {
   }
 
   .md\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -80272,7 +80374,6 @@ video {
   }
 
   .lg\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -101532,7 +101633,6 @@ video {
   }
 
   .xl\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 

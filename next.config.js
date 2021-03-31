@@ -1,7 +1,7 @@
 module.exports = {
   images: {
     deviceSizes: [320, 420, 768, 1024, 1200],
-    domains: ["app.flamant.com"],
+    domains: ["app.flamant.com", "images.unsplash.com"],
     iconSizes: [],
     path: "/_next/image",
     loader: "default",

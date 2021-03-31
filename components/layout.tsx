@@ -1,10 +1,21 @@
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useIdleTimer } from "react-idle-timer";
+import Image from "next/image";
+import { bgWrap, idleContainer } from "./layout.module.css";
 
 export const Layout = ({ children }) => {
   const router = useRouter();
+
+  console.log("here")
+
+  const { isIdle } = useIdleTimer({
+    timeout: 1000 * 10,
+    debounce: 500,
+  });
+
   return (
     <div className="h-screen flex flex-col">
       <div className="pt-8 pb-2 mb-16">
@@ -52,6 +63,19 @@ export const Layout = ({ children }) => {
       </div>
 
       {children}
+      
+      {isIdle ? <div className={idleContainer}>
+        <div className={bgWrap}>
+          <Image
+            alt="Mountains"
+            src="https://images.unsplash.com/photo-1617213146999-f33c20d2a534"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+          />
+        </div>
+      </div> : null}
+      
     </div>
   );
 };
